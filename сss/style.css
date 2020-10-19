@@ -203,6 +203,7 @@ header a {
 
 #popup {
   position: fixed;
+  display: flex;
   z-index: 1;
   width: 100%;
   height: 100%;
@@ -210,13 +211,45 @@ header a {
   background-color: rgba(0, 0, 0, 0);
   top: 0;
   left: -100%;
+  opacity: 0;
 }
 
 #popup.active {
-  display: flex;
   left: 0;
   background-color: rgba(0, 0, 0, 0.4);
+  opacity: 1;
   animation: show-popup 2s;
+}
+
+#popup.closed {
+  animation: hide-popup 2s;
+}
+
+#popup.closed {
+  transition: 2s;
+  left: -100%;
+  opacity: 0;
+}
+
+@keyframes hide-popup {
+  from {
+    background-color: rgba(0, 0, 0, 0.4);
+    left: 0;
+    opacity: 1;
+  }
+  81% {
+    opacity: 1;
+  }
+  90% {
+    background-color: rgba(0, 0, 0, 0);
+    left: 0;
+    opacity: 0;
+  }
+  to {
+    background-color: rgba(0, 0, 0, 0);
+    left: -100%;
+    opacity: 0;
+  }
 }
 
 @keyframes show-popup {
@@ -252,6 +285,18 @@ header a {
   }
 }
 
+@keyframes popup-modal-back {
+  from {
+    transform: translateY(0);
+  }
+  70% {
+    transform: translateY(-100vh);
+  }
+  to {
+    transform: translateY(-100vh);
+  }
+}
+
 .modal-content {
   background-color: #fefefe;
   padding: 20px;
@@ -261,6 +306,10 @@ header a {
 
 #popup.active .modal-content {
   animation: popup-modal-top 2s;
+}
+
+#popup.closed .modal-content {
+  animation: popup-modal-back 2s;
 }
 
 .modal-content img {

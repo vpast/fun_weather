@@ -384,7 +384,7 @@
         var modal = document.getElementById("popup");
 
         $('.open-popup').click(function () {
-            $('#popup').addClass("active");
+            $('#popup').removeClass("closed").addClass("active");
         })
 
         var span = document.getElementsByClassName("close")[0];
@@ -394,13 +394,13 @@
         // }
 
         $(".close").click(function () {
-            $("#popup").removeClass("active");
+            $("#popup").removeClass("active").addClass("closed");
         });
 
         window.onclick = function (event) {
             if (event.target == modal) {
                 // modal.style.display = "none";
-                $("#popup").removeClass("active");
+                $("#popup").removeClass("active").addClass("closed");
             }
         }
     </script>
